@@ -12,9 +12,9 @@ import {
 
 // Use theme if provided
 const urlParams = new URLSearchParams(window.location.search)
+const uiContainer = document.getElementsByClassName('ui-container')[0] as HTMLDivElement
 let theme = Themes[urlParams.get('theme') as keyof Themes] || Themes.darkGold
 if (!theme.isDark) {
-    const uiContainer = document.getElementsByClassName('ui-container')[0] as HTMLDivElement
     uiContainer.style.color = 'black'
 }
 
@@ -26,7 +26,12 @@ const chart = lightningChart({
         container: 'chart-container',
     })
     .setTitleFillStyle(emptyFill)
-    .setPadding({ top: 32 })
+
+const handleResize = () => {
+    chart.setPadding({ top: uiContainer.getBoundingClientRect().height })
+}
+handleResize()
+window.addEventListener('resize', handleResize)
 
 const axisX = chart
     .getDefaultAxisX()

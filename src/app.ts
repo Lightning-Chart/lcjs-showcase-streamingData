@@ -8,6 +8,7 @@ import {
     emptyFill,
     FontSettings,
     disableThemeEffects,
+    htmlTextRenderer,
 } from '@lightningchart/lcjs'
 
 // Use theme if provided
@@ -24,6 +25,7 @@ const chart = lightningChart({
     .ChartXY({
         theme: disableThemeEffects(theme),
         container: 'chart-container',
+        textRenderer: htmlTextRenderer,
     })
     .setTitleFillStyle(emptyFill)
 

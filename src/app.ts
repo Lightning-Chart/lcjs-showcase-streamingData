@@ -38,7 +38,7 @@ window.addEventListener('resize', handleResize)
 const axisX = chart
     .getDefaultAxisX()
     .setAnimationScroll(false)
-    .setScrollStrategy(AxisScrollStrategies.progressive)
+    .setScrollStrategy(AxisScrollStrategies.scrolling)
     .setTitle('Data points per channel')
 
 chart.axisY.dispose()
@@ -59,7 +59,7 @@ const App = (channelCount: number, dataPointsPerSecond: number) => {
             .setTickStrategy(AxisTickStrategies.Empty)
             .setStrokeStyle(emptyLine)
         const series = chart
-            .addPointLineAreaSeries({ dataPattern: 'ProgressiveX', axisY })
+            .addPointLineAreaSeries({ axisY })
             .setName(`Channel #${i + 1}`)
             .setStrokeStyle((stroke) => stroke.setThickness(1))
             .setMaxSampleCount(Math.ceil(xIntervalMax))
